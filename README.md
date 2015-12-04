@@ -1,6 +1,6 @@
 ## *Hashcat* ##
 
-**Hashcat** is an advanced CPU-based password recovery utility for Windows 7/8/10 and GNU/Linux, supporting seven unique modes of attack for over 100 optimized hashing algorithms.
+**Hashcat** is an advanced CPU-based password recovery utility for Windows 7/8/10, Apple OS X, and GNU/Linux, supporting seven unique modes of attack for over 100 optimized hashing algorithms.
 
 ### License ###
 
