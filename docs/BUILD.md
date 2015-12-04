@@ -8,7 +8,7 @@ Hashcat build documentation
 
 # Dependencies
 
-To compile **Hashcat** you need cross compile the **gmp** library for Linux (32/64 bit), Windows (32/64 bit) and OSX (64 bit).
+To compile **Hashcat** you need to cross compile the **gmp** library for Linux (32/64 bit), Windows (32/64 bit) and OSX (64 bit).
 Use the following script (check for an updated version in **docs/deps.sh**):
 
     #!/bin/bash
