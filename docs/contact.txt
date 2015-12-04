@@ -1,0 +1,2 @@
+http: http://hashcat.net
+irc: freenode #hashcat

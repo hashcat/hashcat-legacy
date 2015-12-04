@@ -1,0 +1,3 @@
+The user manuals are constantly updated. Thats why they are not part of the distribtion.
+
+Visit the hashcat forum http://hashcat.net/forum/ or the hashcat wiki http://hashcat.net/wiki/ for most up-to-date informations.
