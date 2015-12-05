@@ -4,27 +4,16 @@
 ##
 
 ##
-##  Makefile for hashcat
+## Detect host OS
 ##
 
-##
-## Detect number of processors
-##
-
-NPROCS   := 1
 OS       := $(shell uname)
-
-ifeq ($(OS),Linux)
-  NPROCS := $(shell grep -c ^processor /proc/cpuinfo)
-else ifeq ($(OS),Darwin)
-  NPROCS := $(shell system_profiler | awk '/Number of CPUs/ {print $$4}{next;}')
-endif
 
 ##
 ## Makefile flags
 ##
 
-MAKEFLAGS += -l -j $(NPROCS) -rR --no-print-directory
+MAKEFLAGS += -l -j -rR --no-print-directory
 
 ifneq ($(findstring clean,$(MAKECMDGOALS)),)
 MAKEFLAGS += -j 1
