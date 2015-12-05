@@ -4,7 +4,7 @@
 
 ### License ###
 
-**Hashcat** is licensed under the MIT license. Refer to [docs/license.txt](docs/license.txt) for more information. 
+**Hashcat** is licensed under the MIT license. Refer to [docs/license.txt](docs/license.txt) for more information.
 
 ### Installation ###
 
@@ -12,7 +12,7 @@ Download the [latest release](https://hashcat.net/hashcat/) and unpack it in the
 
 ### Usage/Help ###
 
-Please refer to the [Hashcat Wiki](http://hashcat.net/wiki/) and the output of `--help` for usage information and general help. A list of frequently asked questions may also be found [here](http://hashcat.net/wiki/doku.php?id=frequently_asked_questions). The [Hashcat Forums](http://hashcat.net/forum/) also contain a plethora of information. 
+Please refer to the [Hashcat Wiki](http://hashcat.net/wiki/) and the output of `--help` for usage information and general help. A list of frequently asked questions may also be found [here](http://hashcat.net/wiki/doku.php?id=frequently_asked_questions). The [Hashcat Forums](http://hashcat.net/forum/) also contain a plethora of information.
 
 ### Building ###
 
@@ -24,11 +24,11 @@ Contributions are welcome and encouraged, provided your code is of sufficient qu
 
 1. Licensed under MIT license, or dedicated to public domain (BSD, GPL, etc. code is incompatible)
 2. Adheres to either C89, C90, or C99 standards
-2. Compiles cleanly with no warnings when compiled with `-W -Wall -std=c99`
-3. Uses [Allman-style](https://en.wikipedia.org/wiki/Indent_style#Allman_style) code blocks & indentation 
-4. Uses 2-character tabs and 2-character indentations
-5. Uses lower-case function and variable names 
-6. Avoids the use of `!` and uses positive conditionals wherever possible (e.g., `if (foo == 0)` instead of `if (!foo)`, and `if (foo)` instead of `if (foo !=0)`)
+3. Compiles cleanly with no warnings when compiled with `-W -Wall -std=c99`
+4. Uses [Allman-style](https://en.wikipedia.org/wiki/Indent_style#Allman_style) code blocks & indentation
+5. Uses 2-character tabs and 2-character indentations
+6. Uses lower-case function and variable names
+7. Avoids the use of `!` and uses positive conditionals wherever possible (e.g., `if (foo == 0)` instead of `if (!foo)`, and `if (foo)` instead of `if (foo !=0)`)
 
 You can use GNU Indent to help assist you with the style requirements:
 
