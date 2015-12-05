@@ -13159,9 +13159,16 @@ void load_hashes (FILE *fp, db_t *db, engine_parameter_t *engine_parameter)
 
           memset (&salt_search->additional_plain_struct[i].buf, 0, additional_plain_max_len);
 
-          snprintf (additional_plain_ptr, additional_plain_max_len + 1, "%s:%s:", user_pos, realm_pos);
+          int buf_len = snprintf (additional_plain_ptr, additional_plain_max_len, "%s:%s:", user_pos, realm_pos);
 
-          salt_search->additional_plain_struct[i].len = user_len + 1 + realm_len + 1;
+          int expected_buf_len = user_len + 1 + realm_len + 1;
+
+          if (buf_len != expected_buf_len) // this should never occur because buffer is large enough, but we better have a check anyway
+          {
+            log_warning ("username and realm (%d bytes) do not fit within the buffer (%d bytes)", expected_buf_len, buf_len);
+          }
+
+          salt_search->additional_plain_struct[i].len = buf_len;
         }
 
         salt_t *salt;
