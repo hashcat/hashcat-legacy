@@ -10,6 +10,13 @@
 #define _FILE_OFFSET_BITS 64
 #define __MSVCRT_VERSION__ 0x0700
 
+#ifdef __APPLE__
+    #include <TargetConditionals.h>
+    #ifdef TARGET_OS_MAC
+			#define OSX
+    #endif
+#endif
+
 #include <assert.h>
 #include <ctype.h>
 #include <dirent.h>

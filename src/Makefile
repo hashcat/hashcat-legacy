@@ -17,7 +17,7 @@ OS       := $(shell uname)
 ifeq ($(OS),Linux)
   NPROCS := $(shell grep -c ^processor /proc/cpuinfo)
 else ifeq ($(OS),Darwin)
-  NPROCS := $(shell system_profiler | awk '/Number of CPUs/ {print $$4}{next;}')
+  NPROCS := $(shell sysctl -n hw.ncpu)
 endif
 
 ##
@@ -68,7 +68,7 @@ release:
 ##
 
 DIR_OSX64      = obj
-CC_OSX64       = i686-apple-darwin10-gcc
+CC_OSX64       = llvm-gcc
 LIBGMP_OSX64   = /opt/hashcat-deps/gmp/osx64
 CFLAGS_OSX64   = $(CFLAGS) -I$(LIBGMP_OSX64)/include -D__HC_x86_64__ -DPOSIX -DOSX -m64 -msse2 -fnested-functions -arch x86_64 -mmacosx-version-min=10.5
 LDFLAGS_OSX64  = $(LDFLAGS) -L$(LIBGMP_OSX64)/lib -lm -lpthread  -mmacosx-version-min=10.5 -lgmp
