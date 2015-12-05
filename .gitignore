@@ -1,0 +1,6 @@
+*.exe
+*.bin
+*.app
+hashcat.pot
+obj/*.o
+release/*
