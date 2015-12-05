@@ -17,7 +17,7 @@ OS       := $(shell uname)
 ifeq ($(OS),Linux)
   NPROCS := $(shell grep -c ^processor /proc/cpuinfo)
 else ifeq ($(OS),Darwin)
-  NPROCS := $(shell system_profiler | awk '/Number of CPUs/ {print $$4}{next;}')
+  NPROCS := $(shell sysctl -n hw.ncpu)
 endif
 
 ##
