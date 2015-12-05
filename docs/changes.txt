@@ -1,3 +1,10 @@
+* changes v2.00 -> v2.01:
+
+type.: Feature
+file.: Host
+desc.: Fix a possible memory problem for hash type -m 11400 = SIP digest authentication (MD5)
+issue: 10
+
 * changes v0.50 -> v2.00:
 
 type: Project
