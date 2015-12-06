@@ -128,15 +128,15 @@ void * __hc_tsearch (const void *key, void **vrootp, __hc_compar_fn_t compar)
 
   if (q != NULL)
   {
-    *nextp = q;			/* link new node to old */
-    q->key = key;			/* initialize new node */
+    *nextp = q;       /* link new node to old */
+    q->key = key;     /* initialize new node  */
     q->red = 1;
     q->left = q->right = NULL;
 
-	  /*
-     * There may be two red edges in a row now, which we must avoid by
-	   * rotating the tree.
-     */
+    /*
+    * There may be two red edges in a row now, which we must avoid by
+    * rotating the tree.
+    */
     if (nextp != rootp) hc_maybe_split_for_insert (nextp, rootp, parentp, r, p_r, 1);
   }
 

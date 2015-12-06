@@ -28,37 +28,37 @@ void log_msg (FILE *fp, const char *fmt, va_list ap)
 
 void log_info (const char *fmt, ...)
 {
-	va_list ap;
+  va_list ap;
 
-	va_start (ap, fmt);
+  va_start (ap, fmt);
 
   log_msg (stdout, fmt, ap);
 
-	va_end (ap);
+  va_end (ap);
 }
 
 void log_warning (const char *fmt, ...)
 {
-	va_list ap;
+  va_list ap;
 
-	va_start (ap, fmt);
+  va_start (ap, fmt);
 
   log_msg (stderr, fmt, ap);
 
-	va_end (ap);
+  va_end (ap);
 }
 
 void log_error (const char *fmt, ...)
 {
-	va_list ap;
+  va_list ap;
 
-	va_start (ap, fmt);
+  va_start (ap, fmt);
 
   fprintf (stderr, "\n\n");
 
   log_msg (stderr, fmt, ap);
 
-	va_end (ap);
+  va_end (ap);
 }
 
 uint32_t get_random_num (uint32_t min, uint32_t max)
@@ -147,11 +147,11 @@ void *myrealloc (void *ptr, size_t size)
 
 char *mystrdup (const char *s)
 {
-	char *b = mymalloc (strlen (s) + 1);
+  char *b = mymalloc (strlen (s) + 1);
 
-	strcpy (b, s);
+  strcpy (b, s);
 
-	return (b);
+  return (b);
 }
 
 int in_superchop (char *buf)
