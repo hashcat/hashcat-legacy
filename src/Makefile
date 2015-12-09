@@ -58,7 +58,7 @@ release:
 
 DIR_OSX64      = obj
 CC_OSX64       = i686-apple-darwin10-gcc
-LIBGMP_OSX64   = /opt/hashcat-deps/gmp/osx64
+LIBGMP_OSX64   = hashcat-deps/gmp/osx64
 CFLAGS_OSX64   = $(CFLAGS) -I$(LIBGMP_OSX64)/include -D__HC_x86_64__ -DPOSIX -DOSX -m64 -msse2 -fnested-functions -arch x86_64 -mmacosx-version-min=10.5
 LDFLAGS_OSX64  = $(LDFLAGS) -L$(LIBGMP_OSX64)/lib -lm -lpthread  -mmacosx-version-min=10.5 -lgmp
 
@@ -99,7 +99,7 @@ $(DIR_OSX64)/common.OSX.64.o: src/common.c
 ##
 
 DIR_POSIX32      = obj
-LIBGMP_POSIX32   = /opt/hashcat-deps/gmp/linux32
+LIBGMP_POSIX32   = hashcat-deps/gmp/linux32
 CC_POSIX32       = gcc
 CFLAGS_POSIX32   = $(CFLAGS) -I$(LIBGMP_POSIX32)/include -D__HC_x86_32__ -DPOSIX -m32 -msse2
 LDFLAGS_POSIX32  = $(LDFLAGS) -L$(LIBGMP_POSIX32)/lib -lm -lpthread -lgmp
@@ -141,7 +141,7 @@ $(DIR_POSIX32)/common.LINUX.32.o: src/common.c
 ##
 
 DIR_POSIX64      = obj
-LIBGMP_POSIX64   = /opt/hashcat-deps/gmp/linux64
+LIBGMP_POSIX64   = hashcat-deps/gmp/linux64
 CC_POSIX64       = gcc
 CFLAGS_POSIX64   = $(CFLAGS) -I$(LIBGMP_POSIX64)/include -D__HC_x86_64__ -DPOSIX -m64 -msse2
 LDFLAGS_POSIX64  = $(LDFLAGS) -L$(LIBGMP_POSIX64)/lib -lm -lpthread -lgmp
@@ -183,7 +183,7 @@ $(DIR_POSIX64)/common.LINUX.64.o: src/common.c
 ##
 
 DIR_POSIXAVX      = obj
-LIBGMP_POSIXAVX   = /opt/hashcat-deps/gmp/linux64
+LIBGMP_POSIXAVX   = hashcat-deps/gmp/linux64
 CC_POSIXAVX       = gcc
 CFLAGS_POSIXAVX   = $(CFLAGS) -I$(LIBGMP_POSIXAVX)/include -D__HC_AVX__ -DPOSIX -m64 -mavx
 LDFLAGS_POSIXAVX  = $(LDFLAGS) -L$(LIBGMP_POSIXAVX)/lib -lm -lpthread -lgmp
@@ -225,7 +225,7 @@ $(DIR_POSIXAVX)/common.LINUX.AVX.o: src/common.c
 ##
 
 DIR_POSIXAVX2     = obj
-LIBGMP_POSIXAVX2  = /opt/hashcat-deps/gmp/linux64
+LIBGMP_POSIXAVX2  = hashcat-deps/gmp/linux64
 CC_POSIXAVX2      = gcc
 CFLAGS_POSIXAVX2  = $(CFLAGS) -I$(LIBGMP_POSIXAVX2)/include -D__HC_AVX2__ -DPOSIX -m64 -mavx2
 LDFLAGS_POSIXAVX2 = $(LDFLAGS) -L$(LIBGMP_POSIXAVX2)/lib -lm -lpthread -lgmp
@@ -267,7 +267,7 @@ $(DIR_POSIXAVX2)/common.LINUX.AVX2.o: src/common.c
 ##
 
 DIR_POSIXXOP      = obj
-LIBGMP_POSIXXOP   = /opt/hashcat-deps/gmp/linux64
+LIBGMP_POSIXXOP   = hashcat-deps/gmp/linux64
 CC_POSIXXOP       = gcc
 CFLAGS_POSIXXOP   = $(CFLAGS) -I$(LIBGMP_POSIXXOP)/include -D__HC_XOP__ -DPOSIX -m64 -mxop
 LDFLAGS_POSIXXOP  = $(LDFLAGS) -L$(LIBGMP_POSIXXOP)/lib -lm -lpthread -lgmp
@@ -309,7 +309,7 @@ $(DIR_POSIXXOP)/common.LINUX.XOP.o: src/common.c
 ##
 
 DIR_WINDOWS32     = obj
-LIBGMP_WINDOW32   = /opt/hashcat-deps/gmp/win32
+LIBGMP_WINDOW32   = hashcat-deps/gmp/win32
 CC_WINDOWS32      = i686-w64-mingw32-gcc
 CFLAGS_WINDOWS32  = $(CFLAGS) -I$(LIBGMP_WINDOW32)/include -D__HC_x86_32__ -DWINDOWS -m32 -msse2 -D__USE_MINGW_ANSI_STDIO=1 -mstackrealign
 LDFLAGS_WINDOWS32 = $(LDFLAGS) -L$(LIBGMP_WINDOW32)/lib -lm -lgmp
@@ -351,7 +351,7 @@ $(DIR_WINDOWS32)/common.WIN.32.o: src/common.c
 ##
 
 DIR_WINDOWS64     = obj
-LIBGMP_WINDOWS64  = /opt/hashcat-deps/gmp/win64
+LIBGMP_WINDOWS64  = hashcat-deps/gmp/win64
 CC_WINDOWS64      = x86_64-w64-mingw32-gcc
 CFLAGS_WINDOWS64  = $(CFLAGS) -I$(LIBGMP_WINDOWS64)/include -D__HC_x86_64__ -DWINDOWS -m64 -msse2 -D__USE_MINGW_ANSI_STDIO=1 -mstackrealign
 LDFLAGS_WINDOWS64 = $(LDFLAGS) -L$(LIBGMP_WINDOWS64)/lib -lm -lgmp
@@ -393,7 +393,7 @@ $(DIR_WINDOWS64)/common.WIN.64.o: src/common.c
 ##
 
 DIR_WINDOWSAVX     = obj
-LIBGMP_WINDOWSAVX  = /opt/hashcat-deps/gmp/win64
+LIBGMP_WINDOWSAVX  = hashcat-deps/gmp/win64
 CC_WINDOWSAVX      = x86_64-w64-mingw32-gcc
 CFLAGS_WINDOWSAVX  = $(CFLAGS) -I$(LIBGMP_WINDOWSAVX)/include -D__HC_AVX__ -DWINDOWS -m64 -mavx -D__USE_MINGW_ANSI_STDIO=1 -mstackrealign
 LDFLAGS_WINDOWSAVX = $(LDFLAGS) -L$(LIBGMP_WINDOWSAVX)/lib -lm -lgmp
@@ -435,7 +435,7 @@ $(DIR_WINDOWSAVX)/common.WIN.AVX.o: src/common.c
 ##
 
 DIR_WINDOWSAVX2     = obj
-LIBGMP_WINDOWSAVX2  = /opt/hashcat-deps/gmp/win64
+LIBGMP_WINDOWSAVX2  = hashcat-deps/gmp/win64
 CC_WINDOWSAVX2      = x86_64-w64-mingw32-gcc
 CFLAGS_WINDOWSAVX2  = $(CFLAGS) -I$(LIBGMP_WINDOWSAVX2)/include -D__HC_AVX2__ -DWINDOWS -m64 -mavx2 -D__USE_MINGW_ANSI_STDIO=1 -mstackrealign
 LDFLAGS_WINDOWSAVX2 = $(LDFLAGS) -L$(LIBGMP_WINDOWSAVX2)/lib -lm -lgmp
@@ -477,7 +477,7 @@ $(DIR_WINDOWSAVX2)/common.WIN.AVX2.o: src/common.c
 ##
 
 DIR_WINDOWSXOP     = obj
-LIBGMP_WINDOWSXOP  = /opt/hashcat-deps/gmp/win64
+LIBGMP_WINDOWSXOP  = hashcat-deps/gmp/win64
 CC_WINDOWSXOP      = x86_64-w64-mingw32-gcc
 CFLAGS_WINDOWSXOP  = $(CFLAGS) -I$(LIBGMP_WINDOWSXOP)/include -D__HC_XOP__ -DWINDOWS -m64 -mxop -D__USE_MINGW_ANSI_STDIO=1 -mstackrealign
 LDFLAGS_WINDOWSXOP = $(LDFLAGS) -L$(LIBGMP_WINDOWSXOP)/lib -lm -lgmp

@@ -4,8 +4,15 @@
 
 ## global vars
 DEPS="git lzip gcc-multilib make m4 mingw-w64"
-#GMP_VER="gmp-6.0.0a"
 GMP_VER="gmp-6.1.0"
+
+## enter the hashcat-deps directory
+cur_directory=$(dirname ${0})
+script_directory=$(cd ${cur_directory} && pwd -P)
+hashcat_deps_dir=${script_directory}/../hashcat-deps
+
+mkdir -p ${hashcat_deps_dir} # but it should already exist (is part of the repository)
+cd ${hashcat_deps_dir}
 
 ## root check
 if [ $(id -u) -ne 0 ]; then
@@ -14,12 +21,12 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 ## make a fresh "hashcat-deps" directories
-rm -rf /opt/hashcat-deps/tmp/gmp* /opt/hashcat-deps/gmp/{linux32,linux64,win32,win64,osx64} && \
-mkdir -p /opt/hashcat-deps/gmp/{linux32,linux64,win32,win64,osx64} /opt/hashcat-deps/tmp && \
-cd /opt/hashcat-deps/tmp
+rm -rf tmp/gmp* gmp/{linux32,linux64,win32,win64,osx64} && \
+mkdir -p gmp/{linux32,linux64,win32,win64,osx64} tmp && \
+cd tmp
 
 if [ $? -ne 0 ]; then
-  echo "! Cannot create hashcat-deps directories."
+  echo "! Cannot create the hashcat-deps directories."
   exit 1
 fi
 
@@ -131,7 +138,7 @@ fi
 ## build gmp lib for linux32
 cp -af ${GMP_VER} ${GMP_VER}-linux32
 cd ${GMP_VER}-linux32 && \
-./configure --host=i386-pc-linux-gnu --prefix=/opt/hashcat-deps/gmp/linux32 --disable-shared && \
+./configure --host=i386-pc-linux-gnu --prefix=${hashcat_deps_dir}/gmp/linux32 --disable-shared && \
 sudo make install && \
 cd .. && \
 rm -rf ${GMP_VER}-linux32
@@ -144,7 +151,7 @@ fi
 ## build gmp lib for linux64
 cp -af ${GMP_VER} ${GMP_VER}-linux64
 cd ${GMP_VER}-linux64 && \
-./configure --host=x86_64-pc-linux-gnu --prefix=/opt/hashcat-deps/gmp/linux64 --disable-shared && \
+./configure --host=x86_64-pc-linux-gnu --prefix=${hashcat_deps_dir}/gmp/linux64 --disable-shared && \
 sudo make install && \
 cd .. && \
 rm -rf ${GMP_VER}-linux64
@@ -157,7 +164,7 @@ fi
 ## build gmp lib for win32
 cp -af ${GMP_VER} ${GMP_VER}-win32
 cd ${GMP_VER}-win32 && \
-./configure --host=i686-w64-mingw32 --prefix=/opt/hashcat-deps/gmp/win32 --disable-shared && \
+./configure --host=i686-w64-mingw32 --prefix=${hashcat_deps_dir}/gmp/win32 --disable-shared && \
 sudo make install && \
 cd .. && \
 rm -rf ${GMP_VER}-win32
@@ -170,7 +177,7 @@ fi
 ## build gmp lib for win64
 cp -af ${GMP_VER} ${GMP_VER}-win64
 cd ${GMP_VER}-win64 && \
-./configure --host=x86_64-w64-mingw32 --prefix=/opt/hashcat-deps/gmp/win64 --disable-shared && \
+./configure --host=x86_64-w64-mingw32 --prefix=${hashcat_deps_dir}/gmp/win64 --disable-shared && \
 sudo make install && \
 cd .. && \
 rm -rf ${GMP_VER}-win64
@@ -184,7 +191,7 @@ fi
 cp -af ${GMP_VER} ${GMP_VER}-osx64
 cd ${GMP_VER}-osx64 && \
 sed -i 's/\(i686.*\)$/\1\n\tabilist=64/' configure && \
-ABI=64 ./configure --host=i686-apple-darwin10 --prefix=/opt/hashcat-deps/gmp/osx64 --disable-shared --disable-assembly && \
+ABI=64 ./configure --host=i686-apple-darwin10 --prefix=${hashcat_deps_dir}/gmp/osx64 --disable-shared --disable-assembly && \
 sudo make install && \
 cd .. && \
 rm -rf ${GMP_VER}-osx64
@@ -194,4 +201,5 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-echo "> GMP library build success."
+echo
+echo "> Successfully resolved all dependencies for hashcat."
