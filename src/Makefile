@@ -100,21 +100,21 @@ $(DIR_OSX64)/common.OSX.64.o: src/common.c
 ##
 
 DIR_FREEBSD64      = obj
-CC_FREEBSD64       = clang
-CFLAGS_FREEBSD64   = $(CFLAGS) -I$(LIBGMP_FREEBSD64)/include -D__HC_x86_64__ -DPOSIX -DOSX -m64 -msse2 -fnested-functions 
-LDFLAGS_FREEBSD64  = $(LDFLAGS) -L/usr/local/include -lgmp -lm -lpthread 
+CC_FREEBSD64       = gcc
+CFLAGS_FREEBSD64   = $(CFLAGS) -I/usr/local/include -DFREEBSD -D__HC_x86_64__ -DPOSIX -DOSX -m64 -msse2 
+LDFLAGS_FREEBSD64  = $(LDFLAGS) -L/usr/local/lib -lgmp -lm -lpthread -lc
 
-freebsd64: hashcat-cli64.bin
+freebsd64: hashcat-cli64.elf
 
-rules-freebsd64: rules-debug64.bin
+rules-freebsd64: rules-debug64.elf
 
-rules-debug64.bin: $(DIR_FREEBSD64)/rp.FREEBSD.64.o src/rules-debug.c
-	$(CC_FREEBSD64) $(filter-out -s,$(CFLAGS_FREEBSD64)) $(DIR_FREEBSD64)/*.FREEBSD.64.o src/rules-debug.c -o rules-debug64.bin $(LDFLAGS_FREEBSD64)
+rules-debug64.elf: $(DIR_FREEBSD64)/rp.FREEBSD.64.o src/rules-debug.c
+	$(CC_FREEBSD64) $(filter-out -s,$(CFLAGS_FREEBSD64)) $(DIR_FREEBSD64)/*.FREEBSD.64.o src/rules-debug.c -o rules-debug64.elf $(LDFLAGS_FREEBSD64)
 
-hashcat-freebsd64: hashcat-cli64.bin
+hashcat-freebsd64: hashcat-cli64.elf
 
-hashcat-cli64.bin: $(DIR_FREEBSD64)/tsearch.FREEBSD.64.o $(DIR_FREEBSD64)/rp.FREEBSD.64.o $(DIR_FREEBSD64)/engine.FREEBSD.64.o src/hashcat-cli.c
-	$(CC_FREEBSD64) $(filter-out -s,$(CFLAGS_FREEBSD64)) $(DIR_FREEBSD64)/*.FREEBSD.64.o src/hashcat-cli.c -o hashcat-cli64.bin $(LDFLAGS_FREEBSD64)
+hashcat-cli64.elf: $(DIR_FREEBSD64)/tsearch.FREEBSD.64.o $(DIR_FREEBSD64)/rp.FREEBSD.64.o $(DIR_FREEBSD64)/engine.FREEBSD.64.o src/hashcat-cli.c
+	$(CC_FREEBSD64) $(filter-out -s,$(CFLAGS_FREEBSD64)) $(DIR_FREEBSD64)/*.FREEBSD.64.o src/hashcat-cli.c -o hashcat-cli64.elf $(LDFLAGS_FREEBSD64)
 
 engine-freebsd64: $(DIR_FREEBSD64)/engine.FREEBSD.64.o
 

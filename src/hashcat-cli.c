@@ -3,9 +3,15 @@
  * License.....: MIT
  */
 
+#ifdef FREEBSD
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#endif
+
 #ifdef OSX
 #include <sys/sysctl.h>
 #endif
+
 
 #define _FILE_OFFSET_BITS 64
 #define _CRT_SECURE_NO_WARNINGS
@@ -17,14 +23,14 @@
 
 // for interactive status prompt
 #ifdef POSIX
-#ifndef OSX
-
-#include <termio.h>
-
-#else
+#if defined(OSX) || defined(FREEBSD)
 
 #include <termios.h>
 #include <sys/ioctl.h>
+
+#else
+
+#include <termio.h>
 
 #endif
 #endif
