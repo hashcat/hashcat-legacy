@@ -12,7 +12,6 @@
 #include <sys/sysctl.h>
 #endif
 
-
 #define _FILE_OFFSET_BITS 64
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -2842,7 +2841,7 @@ void save_hash ()
 
 #ifdef POSIX
 
-#ifndef OSX
+#if !defined(OSX) && !defined(FREEBSD)
 
 static struct termio savemodes;
 static int havemodes = 0;
