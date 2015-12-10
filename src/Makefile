@@ -100,7 +100,7 @@ $(DIR_OSX64)/common.OSX.64.o: src/common.c
 
 DIR_FREEBSD64      = obj
 CC_FREEBSD64       = gcc
-CFLAGS_FREEBSD64   = $(CFLAGS) -I/usr/local/include -DFREEBSD -DPOSIX -m64 -msse2 
+CFLAGS_FREEBSD64   = $(CFLAGS) -I/usr/local/include -DPOSIX -m64 -msse2 
 LDFLAGS_FREEBSD64  = $(LDFLAGS) -L/usr/local/lib -lgmp -lm -lpthread -lc
 
 freebsd64: hashcat-cli64.elf 
