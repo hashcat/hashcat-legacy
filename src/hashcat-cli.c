@@ -2841,7 +2841,7 @@ void save_hash ()
 }
 
 #ifdef POSIX
-#if !defined(OSX) 
+#if defined(OSX) || defined(FREEBSD)
 
 static struct termios savemodes;
 static int havemodes = 0;
