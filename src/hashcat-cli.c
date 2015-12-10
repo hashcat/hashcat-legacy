@@ -6,6 +6,7 @@
 #ifdef FREEBSD
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#include <sys/ttydefaults.h>
 #endif
 
 #ifdef OSX
@@ -2840,9 +2841,7 @@ void save_hash ()
 }
 
 #ifdef POSIX
-
-#if !defined(OSX) && !defined(FREEBSD)
->>>>>>> fd6bd8ccba6a646b729c8e60253c650bb0fc14b7
+#if !defined(OSX) 
 
 static struct termios savemodes;
 static int havemodes = 0;
