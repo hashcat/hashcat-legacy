@@ -2842,6 +2842,56 @@ void save_hash ()
 #ifdef POSIX
 
 #if !defined(OSX) && !defined(FREEBSD)
+>>>>>>> fd6bd8ccba6a646b729c8e60253c650bb0fc14b7
+
+static struct termios savemodes;
+static int havemodes = 0;
+
+int tty_break ()
+{
+  struct termios modmodes;
+
+  if (ioctl (fileno (stdin), TIOCGETA, &savemodes) < 0) return -1;
+
+  havemodes = 1;
+
+  modmodes = savemodes;
+  modmodes.c_lflag &= ~ICANON;
+  modmodes.c_cc[VMIN] = 1;
+  modmodes.c_cc[VTIME] = 0;
+
+  return ioctl (fileno (stdin), TIOCSETAW, &modmodes);
+}
+
+int tty_getchar ()
+{
+  fd_set rfds;
+
+  FD_ZERO (&rfds);
+
+  FD_SET (fileno (stdin), &rfds);
+
+  struct timeval tv;
+
+  tv.tv_sec  = 1;
+  tv.tv_usec = 0;
+
+  int retval = select (1, &rfds, NULL, NULL, &tv);
+
+  if (retval ==  0) return  0;
+  if (retval == -1) return -1;
+
+  return getchar ();
+}
+
+int tty_fix ()
+{
+  if (!havemodes) return 0;
+
+  return ioctl (fileno (stdin), TIOCSETAW, &savemodes);
+}
+
+#else
 
 static struct termio savemodes;
 static int havemodes = 0;
@@ -2890,54 +2940,6 @@ int tty_fix ()
   return ioctl (fileno (stdin), TCSETAW, &savemodes);
 }
 
-#else
-
-static struct termios savemodes;
-static int havemodes = 0;
-
-int tty_break ()
-{
-  struct termios modmodes;
-
-  if (ioctl (fileno (stdin), TIOCGETA, &savemodes) < 0) return -1;
-
-  havemodes = 1;
-
-  modmodes = savemodes;
-  modmodes.c_lflag &= ~ICANON;
-  modmodes.c_cc[VMIN] = 1;
-  modmodes.c_cc[VTIME] = 0;
-
-  return ioctl (fileno (stdin), TIOCSETAW, &modmodes);
-}
-
-int tty_getchar ()
-{
-  fd_set rfds;
-
-  FD_ZERO (&rfds);
-
-  FD_SET (fileno (stdin), &rfds);
-
-  struct timeval tv;
-
-  tv.tv_sec  = 1;
-  tv.tv_usec = 0;
-
-  int retval = select (1, &rfds, NULL, NULL, &tv);
-
-  if (retval ==  0) return  0;
-  if (retval == -1) return -1;
-
-  return getchar ();
-}
-
-int tty_fix ()
-{
-  if (!havemodes) return 0;
-
-  return ioctl (fileno (stdin), TIOCSETAW, &savemodes);
-}
 #endif
 #endif
 

@@ -4,3 +4,5 @@
 hashcat.pot
 obj/*.o
 release/*
+deps/*
+deps/**
