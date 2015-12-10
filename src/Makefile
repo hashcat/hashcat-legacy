@@ -42,11 +42,10 @@ freebsd: freebsd64
 release:
 	rm -rf release
 	mkdir release
-	cp -a charsets docs rules tables salts examples hashcat-cli*.bin hashcat-cli*.exe hashcat-cli64.app release/
+	cp -a charsets docs rules tables salts examples hashcat-cli* release/
 	find release -type f -exec chmod 600 {} \;
 	find release -type d -exec chmod 700 {} \;
-	chmod 700 release/*.bin
-	chmod 700 release/*.app
+	chmod 700 release/hashcat-cli*
 	unix2dos release/salts/*
 	unix2dos release/rules/*
 	unix2dos release/tables/*
@@ -152,12 +151,12 @@ posix32: hashcat-cli32.bin
 rules-posix32: rules-debug32.bin
 
 rules-debug32.bin: $(DIR_POSIX32)/rp.LINUX.32.o src/rules-debug.c
-	$(CC_POSIX32) $(CFLAGS_POSIX32) $(DIR_POSIX32)/*.LINUX.32.o src/rules-debug.c -o rules-debug32.bin $(LDFLAGS_POSIX32)
+	$(CC_POSIX32) $(CFLAGS_POSIX32) $(DIR_POSIX32)/*.LINUX.32.o src/rules-debug.c -o rules-debug32 $(LDFLAGS_POSIX32)
 
 hashcat-posix32: hashcat-cli32.bin
 
 hashcat-cli32.bin: $(DIR_POSIX32)/tsearch.LINUX.32.o $(DIR_POSIX32)/rp.LINUX.32.o  $(DIR_POSIX32)/engine.LINUX.32.o src/hashcat-cli.c
-	$(CC_POSIX32) $(CFLAGS_POSIX32) $(DIR_POSIX32)/*.LINUX.32.o src/hashcat-cli.c -o hashcat-cli32.bin $(LDFLAGS_POSIX32)
+	$(CC_POSIX32) $(CFLAGS_POSIX32) $(DIR_POSIX32)/*.LINUX.32.o src/hashcat-cli.c -o hashcat-cli32 $(LDFLAGS_POSIX32)
 
 engine-posix32: $(DIR_POSIX32)/engine.LINUX.32.o
 
@@ -194,12 +193,12 @@ posix64: hashcat-cli64.bin
 rules-posix64: $(DIR_POSIX64)/rp.LINUX.64.o
 
 rules-debug64.bin: $(DIR_POSIX64)/rp.LINUX.64.o src/rules-debug.c
-	$(CC_POSIX64) $(CFLAGS_POSIX64) $(DIR_POSIX64)/*.LINUX.64.o src/rules-debug.c -o rules-debug64.bin $(LDFLAGS_POSIX64)
+	$(CC_POSIX64) $(CFLAGS_POSIX64) $(DIR_POSIX64)/*.LINUX.64.o src/rules-debug.c -o rules-debug64 $(LDFLAGS_POSIX64)
 
 hashcat-posix64: hashcat-cli64.bin
 
 hashcat-cli64.bin: $(DIR_POSIX64)/tsearch.LINUX.64.o $(DIR_POSIX64)/rp.LINUX.64.o $(DIR_POSIX64)/engine.LINUX.64.o src/hashcat-cli.c
-	$(CC_POSIX64) $(CFLAGS_POSIX64) $(DIR_POSIX64)/*.LINUX.64.o src/hashcat-cli.c -o hashcat-cli64.bin $(LDFLAGS_POSIX64)
+	$(CC_POSIX64) $(CFLAGS_POSIX64) $(DIR_POSIX64)/*.LINUX.64.o src/hashcat-cli.c -o hashcat-cli64 $(LDFLAGS_POSIX64)
 
 engine-posix64: $(DIR_POSIX64)/engine.LINUX.64.o
 
@@ -236,12 +235,12 @@ posixAVX: hashcat-cliAVX.bin
 rules-posixAVX: rules-debugAVX.bin
 
 rules-debugAVX.bin: $(DIR_POSIXAVX)/rp.LINUX.AVX.o src/rules-debug.c
-	$(CC_POSIXAVX) $(CFLAGS_POSIXAVX) $(DIR_POSIXAVX)/*.LINUX.AVX.o src/rules-debug.c -o rules-debugAVX.bin $(LDFLAGS_POSIXAVX)
+	$(CC_POSIXAVX) $(CFLAGS_POSIXAVX) $(DIR_POSIXAVX)/*.LINUX.AVX.o src/rules-debug.c -o rules-debugAVX $(LDFLAGS_POSIXAVX)
 
 hashcat-posixAVX: hashcat-cliAVX.bin
 
 hashcat-cliAVX.bin: $(DIR_POSIXAVX)/tsearch.LINUX.AVX.o $(DIR_POSIXAVX)/rp.LINUX.AVX.o $(DIR_POSIXAVX)/engine.LINUX.AVX.o src/hashcat-cli.c
-	$(CC_POSIXAVX) $(CFLAGS_POSIXAVX) $(DIR_POSIXAVX)/*.LINUX.AVX.o src/hashcat-cli.c -o hashcat-cliAVX.bin $(LDFLAGS_POSIXAVX)
+	$(CC_POSIXAVX) $(CFLAGS_POSIXAVX) $(DIR_POSIXAVX)/*.LINUX.AVX.o src/hashcat-cli.c -o hashcat-cliAVX $(LDFLAGS_POSIXAVX)
 
 engine-posixAVX: $(DIR_POSIXAVX)/engine.LINUX.AVX.o
 
@@ -278,12 +277,12 @@ posixAVX2: hashcat-cliAVX2.bin
 rules-posixAVX2: rules-debugAVX2.bin
 
 rules-debugAVX2.bin: $(DIR_POSIXAVX2)/rp.LINUX.AVX2.o src/rules-debug.c
-	$(CC_POSIXAVX2) $(CFLAGS_POSIXAVX2) $(DIR_POSIXAVX2)/*.LINUX.AVX2.o src/rules-debug.c -o rules-debugAVX2.bin $(LDFLAGS_POSIXAVX2)
+	$(CC_POSIXAVX2) $(CFLAGS_POSIXAVX2) $(DIR_POSIXAVX2)/*.LINUX.AVX2.o src/rules-debug.c -o rules-debugAVX2 $(LDFLAGS_POSIXAVX2)
 
 hashcat-posixAVX2: hashcat-cliAVX2.bin
 
 hashcat-cliAVX2.bin: $(DIR_POSIXAVX2)/tsearch.LINUX.AVX2.o $(DIR_POSIXAVX2)/rp.LINUX.AVX2.o $(DIR_POSIXAVX2)/engine.LINUX.AVX2.o src/hashcat-cli.c
-	$(CC_POSIXAVX2) $(CFLAGS_POSIXAVX2) $(DIR_POSIXAVX2)/*.LINUX.AVX2.o src/hashcat-cli.c -o hashcat-cliAVX2.bin $(LDFLAGS_POSIXAVX2)
+	$(CC_POSIXAVX2) $(CFLAGS_POSIXAVX2) $(DIR_POSIXAVX2)/*.LINUX.AVX2.o src/hashcat-cli.c -o hashcat-cliAVX2 $(LDFLAGS_POSIXAVX2)
 
 engine-posixAVX2: $(DIR_POSIXAVX2)/engine.LINUX.AVX2.o
 
@@ -320,12 +319,12 @@ posixXOP: hashcat-cliXOP.bin
 rules-posixXOP: rules-debugXOP.bin
 
 rules-debugXOP.bin: $(DIR_POSIXXOP)/rp.LINUX.XOP.o src/rules-debug.c
-	$(CC_POSIXXOP) $(CFLAGS_POSIXXOP) $(DIR_POSIXXOP)/*.LINUX.XOP.o src/rules-debug.c -o rules-debugXOP.bin $(LDFLAGS_POSIXXOP)
+	$(CC_POSIXXOP) $(CFLAGS_POSIXXOP) $(DIR_POSIXXOP)/*.LINUX.XOP.o src/rules-debug.c -o rules-debugXOP $(LDFLAGS_POSIXXOP)
 
 hashcat-posixXOP: hashcat-cliXOP.bin
 
 hashcat-cliXOP.bin: $(DIR_POSIXXOP)/tsearch.LINUX.XOP.o $(DIR_POSIXXOP)/rp.LINUX.XOP.o $(DIR_POSIXXOP)/engine.LINUX.XOP.o src/hashcat-cli.c
-	$(CC_POSIXXOP) $(CFLAGS_POSIXXOP) $(DIR_POSIXXOP)/*.LINUX.XOP.o src/hashcat-cli.c -o hashcat-cliXOP.bin $(LDFLAGS_POSIXXOP)
+	$(CC_POSIXXOP) $(CFLAGS_POSIXXOP) $(DIR_POSIXXOP)/*.LINUX.XOP.o src/hashcat-cli.c -o hashcat-cliXOP $(LDFLAGS_POSIXXOP)
 
 engine-posixXOP: $(DIR_POSIXXOP)/engine.LINUX.XOP.o
 
