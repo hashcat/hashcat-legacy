@@ -3,6 +3,12 @@
  * License.....: MIT
  */
 
+#ifdef FREEBSD
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <sys/ttydefaults.h>
+#endif
+
 #ifdef OSX
 #include <sys/sysctl.h>
 #endif
@@ -17,7 +23,7 @@
 
 // for interactive status prompt
 #ifdef POSIX
-#if defined(OSX) || defined(__FreeBSD__)
+#if defined(OSX) || defined(FREEBSD)
 
 #include <termios.h>
 #include <sys/ioctl.h>
@@ -2835,8 +2841,7 @@ void save_hash ()
 }
 
 #ifdef POSIX
-
-#if defined(OSX) || defined(__FreeBSD__)
+#if defined(OSX) || defined(FREEBSD)
 
 static struct termios savemodes;
 static int havemodes = 0;
