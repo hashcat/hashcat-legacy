@@ -30,13 +30,14 @@ all: binaries
 clean:
 	rm -rf core out word hash release obj/* hashcat.pot hashcat-cli*
 
-binaries: linux windows osx
+binaries: linux windows osx 
 
 osx: osx64
 #linux: posix32 posix64 posixAVX posixAVX2 posixXOP
 #windows: windows32 windows64 windowsAVX windowsAVX2 windowsXOP
 linux: posix32 posix64 posixXOP
 windows: windows32 windows64 windowsXOP
+freebsd: freebsd64
 
 release:
 	rm -rf release
@@ -93,6 +94,48 @@ common-osx64: $(DIR_OSX64)/common.OSX.64.o
 
 $(DIR_OSX64)/common.OSX.64.o: src/common.c
 	$(CC_OSX64) $(CFLAGS_OSX64) -c src/common.c -o $(DIR_OSX64)/common.OSX.64.o
+
+##
+## FREEBSD
+##
+
+DIR_FREEBSD64      = obj
+CC_FREEBSD64       = gcc
+CFLAGS_FREEBSD64   = $(CFLAGS) -I/usr/local/include -DFREEBSD -DPOSIX -m64 -msse2 
+LDFLAGS_FREEBSD64  = $(LDFLAGS) -L/usr/local/lib -lgmp -lm -lpthread -lc
+
+freebsd64: hashcat-cli64.elf 
+
+rules-freebsd64: rules-debug64.elf
+
+rules-debug64.elf: $(DIR_FREEBSD64)/rp.FREEBSD.64.o src/rules-debug.c
+	$(CC_FREEBSD64) $(filter-out -s,$(CFLAGS_FREEBSD64)) $(DIR_FREEBSD64)/*.FREEBSD.64.o src/rules-debug.c -o rules-debug64.elf $(LDFLAGS_FREEBSD64)
+
+hashcat-freebsd64: hashcat-cli64.elf
+
+hashcat-cli64.elf: $(DIR_FREEBSD64)/tsearch.FREEBSD.64.o $(DIR_FREEBSD64)/rp.FREEBSD.64.o $(DIR_FREEBSD64)/engine.FREEBSD.64.o src/hashcat-cli.c
+	$(CC_FREEBSD64) $(filter-out -s,$(CFLAGS_FREEBSD64)) $(DIR_FREEBSD64)/*.FREEBSD.64.o src/hashcat-cli.c -o hashcat-cli64.elf $(LDFLAGS_FREEBSD64)
+
+engine-freebsd64: $(DIR_FREEBSD64)/engine.FREEBSD.64.o
+
+$(DIR_FREEBSD64)/engine.FREEBSD.64.o: $(DIR_FREEBSD64)/common.FREEBSD.64.o src/engine.c
+	$(CC_FREEBSD64) $(CFLAGS_FREEBSD64) -c src/engine.c -o $(DIR_FREEBSD64)/engine.FREEBSD.64.o
+
+rp-freebsd64: $(DIR_FREEBSD64)/rp.FREEBSD.64.o
+
+$(DIR_FREEBSD64)/rp.FREEBSD.64.o: $(DIR_FREEBSD64)/common.FREEBSD.64.o src/rp.c
+	$(CC_FREEBSD64) $(CFLAGS_FREEBSD64) -c src/rp.c -o $(DIR_FREEBSD64)/rp.FREEBSD.64.o
+
+tsearch-freebsd64: $(DIR_FREEBSD64)/tsearch.FREEBSD.64.o
+
+$(DIR_FREEBSD64)/tsearch.FREEBSD.64.o: $(DIR_FREEBSD64)/common.FREEBSD.64.o src/tsearch.c
+	$(CC_FREEBSD64) $(CFLAGS_FREEBSD64) -c src/tsearch.c -o $(DIR_FREEBSD64)/tsearch.FREEBSD.64.o
+
+common-freebsd64: $(DIR_FREEBSD64)/common.FREEBSD.64.o
+
+$(DIR_FREEBSD64)/common.FREEBSD.64.o: src/common.c
+	$(CC_FREEBSD64) $(CFLAGS_FREEBSD64) -c src/common.c -o $(DIR_FREEBSD64)/common.FREEBSD.64.o
+
 
 ##
 ## POSIX32

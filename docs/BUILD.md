@@ -29,6 +29,13 @@ Run make depending on your os
 $ make [linux|osx|windows]
 ```
 
-Not specifying an argument will build for all OSes.
+Not specifying an argument will build for all OSes except FreeBSD.
+
+If you want FreeBSD binaries, you will need to run this on a native FreeBSD amd64 system
+```sh
+$ make freebsd
+```
+
+This has been tested on FreeBSD 10.2 and will produce **./hashcat-cli64.elf**. You will need **gmp** installed (/usr/ports/math/gmp).
 
 Enjoy your fresh **Hashcat** binaries ;)
