@@ -37,6 +37,7 @@ osx: osx64
 #windows: windows32 windows64 windowsAVX windowsAVX2 windowsXOP
 linux: posix32 posix64 posixXOP
 windows: windows32 windows64 windowsXOP
+freebsd: posix64 posixAVX posixAVX2 posixXOP
 
 release:
 	rm -rf release
