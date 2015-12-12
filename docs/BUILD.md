@@ -1,7 +1,7 @@
 ## Hashcat build documentation
 
 ### Revision:
-* 1.01
+* 1.02
 
 ### Authors:
 * Gabriele Gristina <<matrix@hashcat.net>>
@@ -26,16 +26,11 @@ $ sudo ./tools/deps.sh
 Run make depending on your os
 
 ```bash
-$ make [linux|osx|windows]
+$ make [linux|osx|windows|freebsd]
 ```
 
-Not specifying an argument will build for all OSes except FreeBSD.
+Not specifying an argument will cross-compile binaries for Linux, Windows and OSX.
 
-If you want FreeBSD binaries, you will need to run this on a native FreeBSD amd64 system
-```sh
-$ make freebsd
-```
-
-This has been tested on FreeBSD 10.2 and will produce **./hashcat-cli64.elf**. You will need **gmp** installed (/usr/ports/math/gmp).
+If you native FreeBSD binaries, you will need **gmp** installed (/usr/ports/math/gmp). This has been tested on FreeBSD 10.2. 
 
 Enjoy your fresh **Hashcat** binaries ;)

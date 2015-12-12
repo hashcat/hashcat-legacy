@@ -22,17 +22,13 @@
 #include "engine.h"
 
 // for interactive status prompt
-#ifdef POSIX
-#if defined(OSX) || defined(FREEBSD)
-
+#if defined OSX || defined FREEBSD
 #include <termios.h>
 #include <sys/ioctl.h>
-
-#else
-
-#include <termio.h>
-
 #endif
+
+#if defined LINUX
+#include <termio.h>
 #endif
 
 #define USAGE_VIEW      0
@@ -1081,7 +1077,7 @@ void wait_finish ()
   }
 #endif
 
-#ifdef POSIX
+#if defined LINUX || defined OSX || defined FREEBSD
   pthread_join (thr_keypress, NULL);
 
   if (thr_removehash)
@@ -1325,7 +1321,7 @@ void status_display_automat ()
   fputc ('\n', out);
   #endif
 
-  #ifdef POSIX
+  #if defined LINUX || defined OSX || defined FREEBSD
   fputc ('\n', out);
   #endif
 
@@ -2840,8 +2836,7 @@ void save_hash ()
   unlink (old_input_file);
 }
 
-#ifdef POSIX
-#if defined(OSX) || defined(FREEBSD)
+#if defined OSX  || defined FREEBSD
 
 static struct termios savemodes;
 static int havemodes = 0;
@@ -2889,9 +2884,9 @@ int tty_fix ()
 
   return ioctl (fileno (stdin), TIOCSETAW, &savemodes);
 }
+#endif
 
-#else
-
+#if defined LINUX
 static struct termio savemodes;
 static int havemodes = 0;
 
@@ -2938,8 +2933,6 @@ int tty_fix ()
 
   return ioctl (fileno (stdin), TCSETAW, &savemodes);
 }
-
-#endif
 #endif
 
 #ifdef WINDOWS
@@ -3684,7 +3677,6 @@ int fgetl (FILE *fp, char *line_buf)
 
 int get_cpu_model (char **name)
 {
-  #ifdef POSIX
   #ifdef OSX
 
   size_t buflen = BUFSIZ;
@@ -3700,7 +3692,9 @@ int get_cpu_model (char **name)
 
   return 0;
 
-  #else
+  #endif
+
+  #if defined LINUX || defined FREEBSD
 
   FILE *fp = fopen ("/proc/cpuinfo", "rb");
 
@@ -3754,7 +3748,6 @@ int get_cpu_model (char **name)
 
   fclose (fp);
 
-  #endif
   #endif
 
   #ifdef WINDOWS
@@ -15979,7 +15972,7 @@ int main (int argc, char *argv[])
 
           if ((fp = fopen (engine_parameter->file_words, "rb")) != NULL)
           {
-            #ifdef POSIX
+            #if defined LINUX || defined OSX || defined FREEBSD
             struct stat file;
 
             stat (engine_parameter->file_words, &file);
