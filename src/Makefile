@@ -39,9 +39,11 @@ LDFLAGS_OSX64  = $(LDFLAGS) -L$(LIBGMP_OSX64)/lib -lm -lpthread  -mmacosx-versio
 
 $(DIR_OSX64)/rules-debug64.app: $(DIR_OSX64)/rp.o src/rules-debug.c
 	$(CC_OSX64) $(filter-out -s,$(CFLAGS_OSX64)) $(DIR_OSX64)/*.o src/rules-debug.c -o $@ $(LDFLAGS_OSX64)
+	cp $@ .
 
 $(DIR_OSX64)/hashcat-cli64.app: $(DIR_OSX64)/tsearch.o $(DIR_OSX64)/rp.o $(DIR_OSX64)/engine.o src/hashcat-cli.c
 	$(CC_OSX64) $(filter-out -s,$(CFLAGS_OSX64)) $(DIR_OSX64)/*.o src/hashcat-cli.c -o $@ $(LDFLAGS_OSX64)
+	cp $@ .
 
 $(DIR_OSX64)/engine.o: $(DIR_OSX64)/common.o src/engine.c
 	$(CC_OSX64) $(CFLAGS_OSX64) -c src/engine.c -o $@
@@ -66,9 +68,11 @@ LDFLAGS_FREEBSD32  = $(LDFLAGS) -L/usr/local/lib -lgmp -lm -lpthread -lc
 
 $(DIR_FREEBSD32)/rules-debug32.bin: $(DIR_FREEBSD32)/rp.o src/rules-debug.c
 	$(CC_FREEBSD32) $(CFLAGS_FREEBSD32) $(DIR_FREEBSD32)/*.o src/rules-debug.c -o $@ $(LDFLAGS_FREEBSD32)
+	cp $@ .
 
 $(DIR_FREEBSD32)/hashcat-cli32.bin: $(DIR_FREEBSD32)/tsearch.o $(DIR_FREEBSD32)/rp.o $(DIR_FREEBSD32)/engine.o src/hashcat-cli.c
 	$(CC_FREEBSD32) $(CFLAGS_FREEBSD32) $(DIR_FREEBSD32)/*.o src/hashcat-cli.c -o $@ $(LDFLAGS_FREEBSD32)
+	cp $@ .
 
 $(DIR_FREEBSD32)/engine.o: $(DIR_FREEBSD32)/common.o src/engine.c
 	$(CC_FREEBSD32) $(CFLAGS_FREEBSD32) -c src/engine.c -o $@
@@ -93,9 +97,11 @@ LDFLAGS_FREEBSD64  = $(LDFLAGS) -L/usr/local/lib -lgmp -lm -lpthread -lc
 
 $(DIR_FREEBSD64)/rules-debug64.bin: $(DIR_FREEBSD64)/rp.o src/rules-debug.c
 	$(CC_FREEBSD64) $(CFLAGS_FREEBSD64) $(DIR_FREEBSD64)/*.o src/rules-debug.c -o $@ $(LDFLAGS_FREEBSD64)
+	cp $@ .
 
 $(DIR_FREEBSD64)/hashcat-cli64.bin: $(DIR_FREEBSD64)/tsearch.o $(DIR_FREEBSD64)/rp.o $(DIR_FREEBSD64)/engine.o src/hashcat-cli.c
 	$(CC_FREEBSD64) $(CFLAGS_FREEBSD64) $(DIR_FREEBSD64)/*.o src/hashcat-cli.c -o $@ $(LDFLAGS_FREEBSD64)
+	cp $@ .
 
 $(DIR_FREEBSD64)/engine.o: $(DIR_FREEBSD64)/common.o src/engine.c
 	$(CC_FREEBSD64) $(CFLAGS_FREEBSD64) -c src/engine.c -o $@
@@ -120,9 +126,11 @@ LDFLAGS_FREEBSDXOP  = $(LDFLAGS) -L/usr/local/lib -lgmp -lm -lpthread -lc
 
 $(DIR_FREEBSDXOP)/rules-debugXOP.bin: $(DIR_FREEBSDXOP)/rp.o src/rules-debug.c
 	$(CC_FREEBSDXOP) $(CFLAGS_FREEBSDXOP) $(DIR_FREEBSDXOP)/*.o src/rules-debug.c -o $@ $(LDFLAGS_FREEBSDXOP)
+	cp $@ .
 
 $(DIR_FREEBSDXOP)/hashcat-cliXOP.bin: $(DIR_FREEBSDXOP)/tsearch.o $(DIR_FREEBSDXOP)/rp.o $(DIR_FREEBSDXOP)/engine.o src/hashcat-cli.c
 	$(CC_FREEBSDXOP) $(CFLAGS_FREEBSDXOP) $(DIR_FREEBSDXOP)/*.o src/hashcat-cli.c -o $@ $(LDFLAGS_FREEBSDXOP)
+	cp $@ .
 
 $(DIR_FREEBSDXOP)/engine.o: $(DIR_FREEBSDXOP)/common.o src/engine.c
 	$(CC_FREEBSDXOP) $(CFLAGS_FREEBSDXOP) -c src/engine.c -o $@
@@ -148,9 +156,11 @@ LDFLAGS_LINUX32  = $(LDFLAGS) -L$(LIBGMP_LINUX32)/lib -lm -lpthread -lgmp
 
 $(DIR_LINUX32)/rules-debug32.bin: $(DIR_LINUX32)/rp.o src/rules-debug.c
 	$(CC_LINUX32) $(CFLAGS_LINUX32) $(DIR_LINUX32)/*.o src/rules-debug.c -o $@ $(LDFLAGS_LINUX32)
+	cp $@ .
 
 $(DIR_LINUX32)/hashcat-cli32.bin: $(DIR_LINUX32)/tsearch.o $(DIR_LINUX32)/rp.o  $(DIR_LINUX32)/engine.o src/hashcat-cli.c
 	$(CC_LINUX32) $(CFLAGS_LINUX32) $(DIR_LINUX32)/*.o src/hashcat-cli.c -o $@ $(LDFLAGS_LINUX32)
+	cp $@ .
 
 $(DIR_LINUX32)/engine.o: $(DIR_LINUX32)/common.o src/engine.c
 	$(CC_LINUX32) $(CFLAGS_LINUX32) -c src/engine.c -o $@
@@ -176,9 +186,11 @@ LDFLAGS_LINUX64  = $(LDFLAGS) -L$(LIBGMP_LINUX64)/lib -lm -lpthread -lgmp
 
 $(DIR_LINUX64)/rules-debug64.bin: $(DIR_LINUX64)/rp.o src/rules-debug.c
 	$(CC_LINUX64) $(CFLAGS_LINUX64) $(DIR_LINUX64)/*.o src/rules-debug.c -o $@ $(LDFLAGS_LINUX64)
+	cp $@ .
 
 $(DIR_LINUX64)/hashcat-cli64.bin: $(DIR_LINUX64)/tsearch.o $(DIR_LINUX64)/rp.o $(DIR_LINUX64)/engine.o src/hashcat-cli.c
 	$(CC_LINUX64) $(CFLAGS_LINUX64) $(DIR_LINUX64)/*.o src/hashcat-cli.c -o $@ $(LDFLAGS_LINUX64)
+	cp $@ .
 
 $(DIR_LINUX64)/engine.o: $(DIR_LINUX64)/common.o src/engine.c
 	$(CC_LINUX64) $(CFLAGS_LINUX64) -c src/engine.c -o $@
@@ -204,9 +216,11 @@ LDFLAGS_LINUXXOP  = $(LDFLAGS) -L$(LIBGMP_LINUXXOP)/lib -lm -lpthread -lgmp
 
 $(DIR_LINUXXOP)/rules-debugXOP.bin: $(DIR_LINUXXOP)/rp.o src/rules-debug.c
 	$(CC_LINUXXOP) $(CFLAGS_LINUXXOP) $(DIR_LINUXXOP)/*.o src/rules-debug.c -o $@ $(LDFLAGS_LINUXXOP)
+	cp $@ .
 
 $(DIR_LINUXXOP)/hashcat-cliXOP.bin: $(DIR_LINUXXOP)/tsearch.o $(DIR_LINUXXOP)/rp.o $(DIR_LINUXXOP)/engine.o src/hashcat-cli.c
 	$(CC_LINUXXOP) $(CFLAGS_LINUXXOP) $(DIR_LINUXXOP)/*.o src/hashcat-cli.c -o $@ $(LDFLAGS_LINUXXOP)
+	cp $@ .
 
 $(DIR_LINUXXOP)/engine.o: $(DIR_LINUXXOP)/common.o src/engine.c
 	$(CC_LINUXXOP) $(CFLAGS_LINUXXOP) -c src/engine.c -o $@
@@ -232,9 +246,11 @@ LDFLAGS_WINDOWS32 = $(LDFLAGS) -L$(LIBGMP_WINDOW32)/lib -lm -lgmp
 
 $(DIR_WINDOWS32)/rules-debug32.exe: $(DIR_WINDOWS32)/rp.o src/rules-debug.c
 	$(CC_WINDOWS32) $(CFLAGS_WINDOWS32) $(DIR_WINDOWS32)/*.o src/rules-debug.c -o $@ $(LDFLAGS_WINDOWS32)
+	cp $@ .
 
 $(DIR_WINDOWS32)/hashcat-cli32.exe: $(DIR_WINDOWS32)/tsearch.o $(DIR_WINDOWS32)/rp.o $(DIR_WINDOWS32)/engine.o src/hashcat-cli.c
 	$(CC_WINDOWS32) $(CFLAGS_WINDOWS32) $(DIR_WINDOWS32)/*.o /usr/i686-w64-mingw32/lib/CRT_glob.o src/hashcat-cli.c -o $@ $(LDFLAGS_WINDOWS32)
+	cp $@ .
 
 $(DIR_WINDOWS32)/engine.o: $(DIR_WINDOWS32)/common.o src/engine.c
 	$(CC_WINDOWS32) $(CFLAGS_WINDOWS32) -c src/engine.c -o $@
@@ -260,9 +276,11 @@ LDFLAGS_WINDOWS64 = $(LDFLAGS) -L$(LIBGMP_WINDOWS64)/lib -lm -lgmp
 
 $(DIR_WINDOWS64)/rules-debug64.exe: $(DIR_WINDOWS64)/rp.o src/rules-debug.c
 	$(CC_WINDOWS64) $(CFLAGS_WINDOWS64) $(DIR_WINDOWS64)/*.o src/rules-debug.c -o $@ $(LDFLAGS_WINDOWS64)
+	cp $@ .
 
 $(DIR_WINDOWS64)/hashcat-cli64.exe: $(DIR_WINDOWS64)/tsearch.o $(DIR_WINDOWS64)/rp.o $(DIR_WINDOWS64)/engine.o src/hashcat-cli.c
 	$(CC_WINDOWS64) $(CFLAGS_WINDOWS64) $(DIR_WINDOWS64)/*.o /usr/x86_64-w64-mingw32/lib/CRT_glob.o src/hashcat-cli.c -o $@ $(LDFLAGS_WINDOWS64)
+	cp $@ .
 
 $(DIR_WINDOWS64)/engine.o: $(DIR_WINDOWS64)/common.o src/engine.c
 	$(CC_WINDOWS64) $(CFLAGS_WINDOWS64) -c src/engine.c -o $@
@@ -288,9 +306,11 @@ LDFLAGS_WINDOWSXOP = $(LDFLAGS) -L$(LIBGMP_WINDOWSXOP)/lib -lm -lgmp
 
 $(DIR_WINDOWSXOP)/rules-debugXOP.exe: $(DIR_WINDOWSXOP)/rp.o src/rules-debug.c
 	$(CC_WINDOWSXOP) $(CFLAGS_WINDOWSXOP) $(DIR_WINDOWSXOP)/*.o src/rules-debug.c -o $@ $(LDFLAGS_WINDOWSXOP)
+	cp $@ .
 
 $(DIR_WINDOWSXOP)/hashcat-cliXOP.exe: $(DIR_WINDOWSXOP)/tsearch.o $(DIR_WINDOWSXOP)/rp.o $(DIR_WINDOWSXOP)/engine.o src/hashcat-cli.c
 	$(CC_WINDOWSXOP) $(CFLAGS_WINDOWSXOP) $(DIR_WINDOWSXOP)/*.o /usr/x86_64-w64-mingw32/lib/CRT_glob.o src/hashcat-cli.c -o $@ $(LDFLAGS_WINDOWSXOP)
+	cp $@ .
 
 $(DIR_WINDOWSXOP)/engine.o: $(DIR_WINDOWSXOP)/common.o src/engine.c
 	$(CC_WINDOWSXOP) $(CFLAGS_WINDOWSXOP) -c src/engine.c -o $@
@@ -309,6 +329,7 @@ $(DIR_WINDOWSXOP)/common.o: src/common.c
 ##
 
 clean:
+	rm -f *.bin *.exe *.app
 	rm -f $(DIR_OSX64)/*
 	rm -f $(DIR_FREEBSD32)/*
 	rm -f $(DIR_FREEBSD64)/*
