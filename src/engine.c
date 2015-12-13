@@ -17001,7 +17001,7 @@ void run_threads (engine_parameter_t *engine_parameter, db_t *db, void (*store_o
     CloseHandle (threads[thread_id]);
 #endif
 
-#ifdef POSIX
+#if defined LINUX || defined OSX || defined FREEBSD
     pthread_join (threads[thread_id], NULL);
 #endif
   }
