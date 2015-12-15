@@ -31,6 +31,6 @@ $ make [linux|osx|windows|freebsd]
 
 Not specifying an argument will cross-compile binaries for Linux, Windows and OSX.
 
-If you native FreeBSD binaries, you will need **gmp** installed (/usr/ports/math/gmp). This has been tested on FreeBSD 10.2. 
+If you want to compile native FreeBSD binaries, you will need **gmp** installed (/usr/ports/math/gmp). This has been tested on FreeBSD 10.2. 
 
 Enjoy your fresh **Hashcat** binaries ;)
