@@ -15676,6 +15676,13 @@ int main (int argc, char *argv[])
     {
       if (file_hashes)
       {
+        if (benchmark == 1)
+        {
+          log_error ("Can not run benchmark against a hash file");
+
+          exit (-1);
+        }
+
         FILE *fp;
 
         if ((fp = fopen (file_hashes, "rb")) != NULL)
