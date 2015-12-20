@@ -15726,10 +15726,10 @@ void *attack_a3r0 (thread_parameter_t *thread_parameter)
   cs_t    *css_buf = thread_parameter->css_buf;
   uint32_t pw_len  = thread_parameter->pw_len;
 
-  plains[0].len = pw_len;
-  plains[1].len = pw_len;
-  plains[2].len = pw_len;
-  plains[3].len = pw_len;
+  if (words_steps > 0) plains[0].len = pw_len;
+  if (words_steps > 1) plains[1].len = pw_len;
+  if (words_steps > 2) plains[2].len = pw_len;
+  if (words_steps > 3) plains[3].len = pw_len;
 
   uint64 cur[4];
 
