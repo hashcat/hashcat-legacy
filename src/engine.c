@@ -16331,7 +16331,9 @@ void *attack_a0r0 (thread_parameter_t *thread_parameter)
 
     uint32_t i;
 
-    for (i = 0; i < 4; i++, words_next++)
+    uint limit = MIN (4, words_steps - words_cur);
+
+    for (i = 0; i < limit; i++, words_next++)
     {
       int next_len = words->words_len[words_next];
 
@@ -16344,6 +16346,11 @@ void *attack_a0r0 (thread_parameter_t *thread_parameter)
       plains[i].len = next_len;
 
       plains[i].pos = thread_parameter->thread_words_done + i;
+    }
+
+    for (; i < 4; i++)
+    {
+      plains[i].len = 0;
     }
 
     thread_parameter->hashing (thread_parameter, plains);
