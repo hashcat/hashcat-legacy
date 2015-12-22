@@ -15554,6 +15554,13 @@ void *attack_a5r0 (thread_parameter_t *thread_parameter)
         memset (ptrs[j] + plains[j].len, 0, BLOCK_SIZE - plains[j].len);
       }
 
+      for (; j < 4; j++)
+      {
+        memset (ptrs[j], 0, BLOCK_SIZE);
+
+        plains[j].len = 0;
+      }
+
       thread_parameter->hashing (thread_parameter, plains);
 
       thread_parameter->thread_plains_done += left;
