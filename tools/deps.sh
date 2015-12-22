@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Gabriele Gristina <matrix@hashcat.net>
-# Revision: 1.0
+# Revision: 1.1
 
 ## global vars
 DEPS="git lzip gcc-multilib make m4 mingw-w64"
@@ -31,91 +31,103 @@ if [ $? -ne 0 ]; then
 fi
 
 ## install osx cross stuff
-if [ ! -d "apple-pkgs" ]; then
-  mkdir -p apple-pkgs
-fi
+mkdir -p apple-pkgs
 cd apple-pkgs
 
-if [ ! -f "libssl0.9.8_0.9.8o-4squeeze14_amd64.deb" ]; then
-  wget -c http://http.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+dpkg -l | grep libssl0.9.8 | grep ^ii &>/dev/null
+if [ $? -ne 0 ]; then
+  if [ ! -f "libssl0.9.8_0.9.8o-4squeeze14_amd64.deb" ]; then
+    wget -c http://http.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+    if [ $? -ne 0 ]; then
+      echo "! failed to download libssl0.9.8 debian package"
+      exit 1
+    fi
+  fi
+
+  dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
   if [ $? -ne 0 ]; then
-    echo "! failed to download libssl0.9.8 debian package"
+    echo "! failed to install libssl0.9.8"
     exit 1
   fi
 fi
 
-dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
-if [ $? -ne 0 ]; then
-  echo "! failed to install libssl0.9.8"
-  exit 1
-fi
 
-if [ ! -f "apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb" ]; then
-  wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb
+dpkg -l | grep apple-uni-sdk-10.5 | grep ^ii &>/dev/null
+if [ $? -ne 0 ]; then
+  if [ ! -f "apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb" ]; then
+    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb
+    if [ $? -ne 0 ]; then
+      echo "! failed to download apple-uni-sdk-10.5 debian package"
+      exit 1
+    fi
+  fi
+
+  dpkg -i apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb
   if [ $? -ne 0 ]; then
-    echo "! failed to download apple-uni-sdk-10.5 debian package"
+    echo "! failed to install apple-uni-sdk-10.5"
     exit 1
   fi
 fi
 
-dpkg -i apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb
+dpkg -l | grep apple-uni-sdk-10.6 | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  echo "! failed to install apple-uni-sdk-10.5"
-  exit 1
-fi
+  if [ ! -f "apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb" ]; then
+    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb
+    if [ $? -ne 0 ]; then
+      echo "! failed to download apple-uni-sdk-10.6 debian package"
+      exit 1
+    fi
+  fi
 
-if [ ! -f "apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb" ]; then
-  wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb
+  dpkg -i apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb
   if [ $? -ne 0 ]; then
-    echo "! failed to download apple-uni-sdk-10.6 debian package"
+    echo "! failed to install apple-uni-sdk-10.6"
     exit 1
   fi
 fi
 
-dpkg -i apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb
+dpkg -l | grep apple-x86-odcctools | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  echo "! failed to install apple-uni-sdk-10.6"
-  exit 1
-fi
+  if [ ! -f "apple-x86-odcctools_758.159-0flosoft11_amd64.deb" ]; then
+    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-x86-odcctools_758.159-0flosoft11_amd64.deb
+    if [ $? -ne 0 ]; then
+      echo "! failed to download apple-x86-odcctools debian package"
+      exit 1
+    fi
+  fi
 
-if [ ! -f "apple-x86-odcctools_758.159-0flosoft11_amd64.deb" ]; then
-  wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-x86-odcctools_758.159-0flosoft11_amd64.deb
+  dpkg -i apple-x86-odcctools_758.159-0flosoft11_amd64.deb
   if [ $? -ne 0 ]; then
-    echo "! failed to download apple-x86-odcctools debian package"
+    echo "! failed to install apple-x86-odcctools"
     exit 1
   fi
 fi
 
-dpkg -i apple-x86-odcctools_758.159-0flosoft11_amd64.deb
+dpkg -l | grep apple-x86-gcc | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  echo "! failed to install apple-x86-odcctools"
-  exit 1
-fi
+  if [ ! -f "apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb" ]; then
+    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb
+    if [ $? -ne 0 ]; then
+      echo "! failed to download apple-x86-gcc debian package"
+      exit 1
+    fi
+  fi
 
-if [ ! -f "apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb" ]; then
-  wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb
+  dpkg -i apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb
   if [ $? -ne 0 ]; then
-    echo "! failed to download apple-x86-gcc debian package"
+    echo "! failed to install apple-x86-gcc"
     exit 1
   fi
-fi
-
-dpkg -i apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb
-if [ $? -ne 0 ]; then
-  echo "! failed to install apple-x86-gcc"
-  exit 1
 fi
 
 cd ..
 
 ## installing needed packages
-for pkg in ${DEPS}; do
-  apt-get -y install ${pkg}
-  if [ $? -ne 0 ]; then
-    echo "! failed to install ${pkg}"
-    exit 1
-  fi
-done
+apt-get -y install ${DEPS}
+if [ $? -ne 0 ]; then
+  echo "! failed to install deps packages"
+  exit 1
+fi
 
 ## download gmp source code
 wget -c https://gmplib.org/download/gmp/${GMP_VER}.tar.lz
