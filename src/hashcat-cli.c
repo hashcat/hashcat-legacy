@@ -16461,6 +16461,13 @@ int main (int argc, char *argv[])
     }
     else if (attack_mode == 8)
     {
+      /* hack: since run_threads () and hashing_xxxxx () will use these engine_parameter->words_skip and engine_parameter->words_limit
+       * values, we need to make sure that we don't skip and limit twice, therefore we set them to 0 here, because the below PRINCE algo
+       * already does the skipping/limiting
+       */
+      engine_parameter->words_skip  = 0;
+      engine_parameter->words_limit = 0;
+
       mpz_t pw_ks_pos[OUT_LEN_MAX + 1];
       mpz_t pw_ks_cnt[OUT_LEN_MAX + 1];
 
@@ -17070,6 +17077,11 @@ int main (int argc, char *argv[])
       free (wordlen_dist);
       free (pw_orders);
       free (db_entries);
+
+      // don't forget to reset the skip and limit values
+
+      engine_parameter->words_skip  = words_skip;
+      engine_parameter->words_limit = words_limit;
     }
 
     /*
