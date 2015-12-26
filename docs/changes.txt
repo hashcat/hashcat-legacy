@@ -25,6 +25,11 @@ file.: Host
 desc.: Implemented a fix for the final output for attack mode -a 5 (table lookup attack)
 issue: 37
 
+type.: bug
+file.: Host
+desc.: Fixed the use of -s / -l parameters together with the attack mode -a 8 (Prince)
+issue: 40
+
 * changes v0.50 -> v2.00:
 
 type: Project
