@@ -10,10 +10,15 @@ file.: Host
 desc.: Fixed a possible memory problem for hash type -m 11400 = SIP digest authentication (MD5)
 issue: 10
 
-type.: bug
+type.: Bug
 file.: Host
 desc.: Fixed a problem with the -s / -l parameters in attack modes -a 0 (straight) and -a 3 (mask attack)
 issue: 2
+
+type.: Bug
+file.: Host
+desc.: Fixed the output of attack mode -a 4 (permutation attack)
+issue: 36
 
 * changes v0.50 -> v2.00:
 
