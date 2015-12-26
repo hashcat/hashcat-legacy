@@ -20,6 +20,11 @@ file.: Host
 desc.: Fixed the output of attack mode -a 4 (permutation attack)
 issue: 36
 
+type.: bug
+file.: Host
+desc.: Implemented a fix for the final output for attack mode -a 5 (table lookup attack)
+issue: 37
+
 * changes v0.50 -> v2.00:
 
 type: Project
