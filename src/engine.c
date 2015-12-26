@@ -15647,7 +15647,7 @@ void *attack_a4r0 (thread_parameter_t *thread_parameter)
 
     for (k = 0; k < words->words_len[words_next] + 1; k++) p[k] = k;
 
-    k = 1;
+    k = 0;
 
     /* main loop */
 
@@ -15657,16 +15657,18 @@ void *attack_a4r0 (thread_parameter_t *thread_parameter)
     {
       for (i = 0; i < 4; i++)
       {
-        if ((k = next_permutation (words->words_buf[words_next], p, k)) == words->words_len[words_next]) break;
+        k = next_permutation (words->words_buf[words_next], p, k);
 
         memcpy (ptrs[i], words->words_buf[words_next], words->words_len[words_next]);
 
         plains[i].pos = thread_parameter->thread_plains_done + i;  // TODO: needs verification
+
+        if (k == words->words_len[words_next]) break;
       }
 
       int j;
 
-      for (j = i; j < 4; j++)
+      for (j = i + 1; j < 4; j++) // the +1 is here because if < 4, we did use 'break' to exit the loop
       {
         memset (ptrs[j], 0, BLOCK_SIZE);
 
