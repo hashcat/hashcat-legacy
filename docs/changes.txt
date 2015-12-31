@@ -5,6 +5,11 @@ file.: Host
 desc.: Added native compilation support for FreeBSD
 PR...: 23, 25
 
+type.: Change
+file.: Host
+desc.: Reordered hash-type listing in usage screen and set default benchmark ordering analogue to that listing
+issue: 44
+
 type.: Bug
 file.: Host
 desc.: Fixed a problem with the -s / -l parameters in attack modes -a 0 (straight) and -a 3 (mask attack)
