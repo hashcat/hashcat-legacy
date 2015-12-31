@@ -435,7 +435,7 @@ static const char *USAGE_BIG[] =
 "    300 = MySQL4.1/MySQL5",
 "    112 = Oracle S: Type (Oracle 11+)",
 "",
-"[[ HTTP, SMTP, LDAP Server]]",
+"[[ HTTP, SMTP, LDAP Server ]]",
 "",
 "    123 = EPi",
 "    141 = EPiServer 6.x < v4",
