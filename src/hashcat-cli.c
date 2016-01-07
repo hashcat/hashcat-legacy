@@ -13442,7 +13442,7 @@ void load_hashes (FILE *fp, db_t *db, engine_parameter_t *engine_parameter)
 
   if (separator_warnings > 0)
   {
-    log_warning ("%d salts contain separator-char '%c'", separator_warnings, engine_parameter->separator);
+    log_warning ("%d salts contain separator '%c'", separator_warnings, engine_parameter->separator);
   }
 
   if (engine_parameter->salt_type == SALT_TYPE_EXTERNAL)
@@ -13927,7 +13927,7 @@ int main (int argc, char *argv[])
   #define IDX_RP_GEN_FUNC_MIN 11001
   #define IDX_RP_GEN_FUNC_MAX 11002
   #define IDX_RP_GEN_SEED     11003
-  #define IDX_SEPARATOR_CHAR  'p'
+  #define IDX_SEPARATOR       'p'
   #define IDX_OUTFILE_AUTOHEX_DISABLE 11004
   #define IDX_TOGGLE_MIN      2001
   #define IDX_TOGGLE_MAX      2002
@@ -13992,9 +13992,7 @@ int main (int argc, char *argv[])
                         required_argument, 0, IDX_RP_GEN_SEED},
     {"outfile-autohex-disable",
                         no_argument,       0, IDX_OUTFILE_AUTOHEX_DISABLE},
-    {"separator-char",  required_argument, 0, IDX_SEPARATOR_CHAR},
-    // add legacy support for "old" seperator option (w/ typo)
-    {"seperator-char",  required_argument, 0, IDX_SEPARATOR_CHAR},
+    {"separator",       required_argument, 0, IDX_SEPARATOR},
     {"toggle-min",      required_argument, 0, IDX_TOGGLE_MIN},
     {"toggle-max",      required_argument, 0, IDX_TOGGLE_MAX},
     {"increment",       no_argument,       0, IDX_INCREMENT},
@@ -14081,7 +14079,7 @@ int main (int argc, char *argv[])
                                 rp_gen_seed_chgd   = 1;               break;
       case IDX_OUTFILE_AUTOHEX_DISABLE:
                                 output_autohex     = 0;               break;
-      case IDX_SEPARATOR_CHAR:  separator          = optarg[0];       break;
+      case IDX_SEPARATOR:       separator          = optarg[0];       break;
       case IDX_TOGGLE_MIN:      toggle_min         = atoi (optarg);   break;
       case IDX_TOGGLE_MAX:      toggle_max         = atoi (optarg);   break;
       case IDX_INCREMENT:       increment          = 1;               break;
