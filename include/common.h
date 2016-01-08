@@ -31,6 +31,7 @@
 
 #ifdef OSX
 #include <emmintrin.h>
+#include <tmmintrin.h>
 #else
 #include <x86intrin.h>
 #endif

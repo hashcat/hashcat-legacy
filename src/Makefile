@@ -34,8 +34,8 @@ LDFLAGS :=
 DIR_OSX64      = obj/osx64
 CC_OSX64       = i686-apple-darwin10-gcc
 LIBGMP_OSX64   = deps/gmp/osx64
-CFLAGS_OSX64   = $(CFLAGS) -I$(LIBGMP_OSX64)/include -D__HC_x86_64__ -DOSX -m64 -msse2 -fnested-functions -arch x86_64 -mmacosx-version-min=10.5
-LDFLAGS_OSX64  = $(LDFLAGS) -L$(LIBGMP_OSX64)/lib -lm -lpthread  -mmacosx-version-min=10.5 -lgmp
+CFLAGS_OSX64   = $(CFLAGS) -I$(LIBGMP_OSX64)/include -D__HC_x86_64__ -DOSX -m64 -msse2 -arch x86_64 -mmacosx-version-min=10.5
+LDFLAGS_OSX64  = $(LDFLAGS) -L$(LIBGMP_OSX64)/lib -lm -lpthread -lgmp
 
 $(DIR_OSX64)/rules-debug64.app: $(DIR_OSX64)/rp.o src/rules-debug.c
 	$(CC_OSX64) $(filter-out -s,$(CFLAGS_OSX64)) $(DIR_OSX64)/*.o src/rules-debug.c -o $@ $(LDFLAGS_OSX64)
