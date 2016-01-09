@@ -4599,7 +4599,7 @@ void md4_final_sse2_max55 (plain_t *plains, digest_md4_sse2_t *digests)
   {
     plain_t *ptr = plains + i;
 
-    if (ptr.len >= 56) continue;
+    if (ptr->len >= 56) continue;
 
     memset (ptr->buf8 + ptr->len, 0, 64 - ptr->len);
 
