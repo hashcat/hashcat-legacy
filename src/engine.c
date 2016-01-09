@@ -4599,6 +4599,8 @@ void md4_final_sse2_max55 (plain_t *plains, digest_md4_sse2_t *digests)
   {
     plain_t *ptr = plains + i;
 
+    if (ptr.len >= 56) continue;
+
     memset (ptr->buf8 + ptr->len, 0, 64 - ptr->len);
 
     ptr->buf8[ptr->len] = 0x80;
@@ -4617,6 +4619,8 @@ void md5_final_sse2_max55 (plain_t *plains, digest_md5_sse2_t *digests)
   {
     plain_t *ptr = plains + i;
 
+    if (ptr->len >= 56) continue;
+
     memset (ptr->buf8 + ptr->len, 0, 64 - ptr->len);
 
     ptr->buf8[ptr->len] = 0x80;
@@ -4634,6 +4638,8 @@ void sha1_final_sse2_max55 (plain_t *plains, digest_sha1_sse2_t *digests)
   for (i = 0; i < 4; i++)
   {
     plain_t *ptr = plains + i;
+
+    if (ptr->len >= 56) continue;
 
     memset (ptr->buf8 + ptr->len, 0, 64 - ptr->len);
 
@@ -4654,6 +4660,8 @@ void sha256_final_sse2_max55 (plain_t *plains, digest_sha256_sse2_t *digests)
   for (i = 0; i < 4; i++)
   {
     plain_t *ptr = plains + i;
+
+    if (ptr->len >= 56) continue;
 
     memset (ptr->buf8 + ptr->len, 0, 64 - ptr->len);
 

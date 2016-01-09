@@ -37,6 +37,11 @@ issue: 40
 
 type.: Bug
 file.: Host
+desc.: Fixed a memory issue with algorithms using unicode when trying password candidates longer than 27 characters
+issue: 54
+
+type.: Bug
+file.: Host
 desc.: Fixed --help text for hash type -m 9900 = Radmin2 (was wronly displayed as -m 9800 = Radmin2)
 
 * changes v0.50 -> v2.00:
