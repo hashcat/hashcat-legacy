@@ -16811,7 +16811,7 @@ int main (int argc, char *argv[])
 
         if (mpz_cmp (tmp, total_ks_cnt) > 0)
         {
-          fprintf (stderr, "Value of --words-skip + ----words-limit cannot be larger than total keyspace\n");
+          fprintf (stderr, "Value of --words-skip + --words-limit cannot be larger than total keyspace\n");
 
           return (-1);
         }
