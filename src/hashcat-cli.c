@@ -11,6 +11,8 @@
 
 #ifdef OSX
 #include <sys/sysctl.h>
+#include <uuid/uuid.h>
+#include <pwd.h>
 #endif
 
 #define _FILE_OFFSET_BITS 64
@@ -29,6 +31,7 @@
 
 #if defined LINUX
 #include <termio.h>
+#include <pwd.h>
 #endif
 
 #define USAGE_VIEW      0
@@ -13749,6 +13752,7 @@ void cpuid (uint32_t CPUInfo[4], const uint32_t InfoType)
 
 #endif
 
+/*
 uint32_t avx_enabled ()
 {
   uint32_t info[4];
@@ -13828,6 +13832,7 @@ uint32_t xop_enabled ()
 
   return 0;
 }
+*/
 
 int main (int argc, char *argv[])
 {
@@ -13993,6 +13998,7 @@ int main (int argc, char *argv[])
     {"outfile-autohex-disable",
                         no_argument,       0, IDX_OUTFILE_AUTOHEX_DISABLE},
     {"separator",       required_argument, 0, IDX_SEPARATOR},
+    // add legacy support for "old" seperator option (w/ typo)
     {"toggle-min",      required_argument, 0, IDX_TOGGLE_MIN},
     {"toggle-max",      required_argument, 0, IDX_TOGGLE_MAX},
     {"increment",       no_argument,       0, IDX_INCREMENT},
@@ -14162,6 +14168,92 @@ int main (int argc, char *argv[])
   /*
    * sanity check
    */
+
+  struct stat st;
+  char *homedir = NULL, *tmp = NULL;
+
+  #if defined LINUX || defined OSX || defined FREEBSD
+  if ((homedir = getenv("HOME")) == NULL)
+  {
+    homedir = getpwuid(getuid())->pw_dir;
+    if (!homedir)
+    {
+      log_error("Failed to get homedir path.\n");
+      exit (-1);
+    }
+  }
+  #else
+  char *tmp1 = getenv("HOMEDRIVE");
+  homedir = strcat(tmp1, getenv("HOMEPATH"));
+
+  if (!homedir)
+  {
+    log_error("Failed to get homedir path.\n");
+    exit (-1);
+  }
+  #endif
+
+  #if defined LINUX || defined OSX || defined FREEBSD
+  if (!(tmp = strcat(homedir, "/.hashcat")))
+  #else
+  if (!(tmp = strcat(homedir, "\\.hashcat")))
+  #endif
+  {
+    log_error("Failed to append profile dir to homedir path (%s).\n", strerror(errno));
+    exit (-1);
+  }
+
+  memset (&st, 0, sizeof(st));
+  if (stat(tmp, &st) != 0)
+  {
+    // log_info ("Creating new profile directory (%s).", tmp);
+    #if defined LINUX || defined OSX || defined FREEBSD
+    if (mkdir (tmp, 0755) != 0)
+    #else
+    if (mkdir (tmp) != 0)
+    #endif
+    {
+      log_error("Failed to create a new profile directory (%s)(%d)(%s).", tmp, errno, strerror(errno));
+      exit (-1);
+    }
+  }
+
+  #if defined LINUX || defined OSX || defined FREEBSD
+  if (!(tmp = strcat(tmp, "/sessions")))
+  #else
+  if (!(tmp = strcat(tmp, "\\sessions")))
+  #endif
+  {
+    log_error("Failed to append session dir to profile path (%s).\n", strerror(errno));
+    exit (-1);
+  }
+
+  memset (&st, 0, sizeof(st));
+  if (stat(tmp, &st) != 0)
+  {
+    // log_info ("Creating new session directory (%s)\n", tmp);
+    #if defined LINUX || defined OSX || defined FREEBSD
+    if (mkdir (tmp, 0755) != 0)
+    #else
+    if (mkdir (tmp) != 0)
+    #endif
+    {
+      log_error("Failed to create a new session directory (%s).", tmp);
+      exit (-1);
+    }
+  }
+
+  char *file_pot = NULL;
+
+  #if defined LINUX || defined OSX || defined FREEBSD
+  if (!(file_pot = strcat(tmp, "/hashcat.pot")))
+  #else
+  if (!(file_pot = strcat(tmp, "\\hashcat.pot")))
+  #endif
+  {
+    log_error("Failed to append pot filename to session path (%s).\n", strerror(errno));
+    exit (-1);
+  }
 
   if (version_view == 1)
   {
@@ -14677,8 +14769,6 @@ int main (int argc, char *argv[])
   /*
    * potfile 1
    */
-
-  char *file_pot = POTFILE;
 
   if (potfile_disable == 1)
   {
