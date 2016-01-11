@@ -14346,7 +14346,7 @@ int main (int argc, char *argv[])
   {
     if (attack_mode == 8)
     {
-      log_error ("increment switch not supported in PRINCE attack mode use --pw-min and --pw-max instead");
+      log_error ("increment switch not supported in PRINCE attack mode. Please use --pw-min and --pw-max instead");
 
       return (-1);
     }
@@ -14396,7 +14396,7 @@ int main (int argc, char *argv[])
 
   if (pw_min > pw_max)
   {
-    log_error ("Value of --pw-min (%d) must be smaller or equal than value of --pw-max (%d)\n", pw_min, pw_max);
+    log_error ("Value of --pw-min (%d) must be smaller or equal than the value of --pw-max (%d)\n", pw_min, pw_max);
 
     return (-1);
   }
@@ -16790,7 +16790,7 @@ int main (int argc, char *argv[])
       {
         if (mpz_cmp (skip, total_ks_cnt) >= 0)
         {
-          fprintf (stderr, "Value of --skip must be smaller than total keyspace\n");
+          fprintf (stderr, "Value of --words-skip must be smaller than total keyspace\n");
 
           free (wordlen_dist);
 
@@ -16802,7 +16802,7 @@ int main (int argc, char *argv[])
       {
         if (mpz_cmp (limit, total_ks_cnt) > 0)
         {
-          fprintf (stderr, "Value of --limit cannot be larger than total keyspace\n");
+          fprintf (stderr, "Value of --words-limit cannot be larger than total keyspace\n");
 
           return (-1);
         }
@@ -16811,7 +16811,7 @@ int main (int argc, char *argv[])
 
         if (mpz_cmp (tmp, total_ks_cnt) > 0)
         {
-          fprintf (stderr, "Value of --skip + --limit cannot be larger than total keyspace\n");
+          fprintf (stderr, "Value of --words-skip + ----words-limit cannot be larger than total keyspace\n");
 
           return (-1);
         }
