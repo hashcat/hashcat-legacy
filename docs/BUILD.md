@@ -1,7 +1,7 @@
 ## Hashcat build documentation
 
 ### Revision:
-* 1.02
+* 1.03
 
 ### Authors:
 * Gabriele Gristina <<matrix@hashcat.net>>
