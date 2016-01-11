@@ -3,7 +3,7 @@
 # Revision: 1.1
 
 ## global vars
-DEPS="git lzip gcc-multilib make m4 mingw-w64"
+DEPS="git lzip gcc-multilib make m4 mingw-w64 dos2unix"
 GMP_VER="gmp-6.1.0"
 
 ## enter the deps directory
