@@ -594,7 +594,7 @@ int apply_rule (char *rule, int rule_len, char in[BLOCK_SIZE], int in_len, char 
   if (rule_len < 1) return (RULE_RC_REJECT_ERROR);
 
   int out_len = in_len;
-  int mem_len = in_len;
+  int mem_len = 0;
 
   memcpy (out, in, out_len);
 
