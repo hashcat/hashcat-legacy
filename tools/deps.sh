@@ -37,7 +37,7 @@ cd apple-pkgs
 dpkg -l | grep libssl0.9.8 | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
   if [ ! -f "libssl0.9.8_0.9.8o-4squeeze14_amd64.deb" ]; then
-    wget -c http://http.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+    wget -c http://archive.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
     if [ $? -ne 0 ]; then
       echo "! failed to download libssl0.9.8 debian package"
       exit 1
