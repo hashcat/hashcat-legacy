@@ -1,0 +1,35 @@
+# Copying and distribution of this file, with or without modification,
+# are permitted in any medium without royalty provided this notice is
+# preserved.  This file is offered as-is, without any warranty.
+# Names of contributors must not be used to endorse or promote products
+# derived from this file without specific prior written permission.
+
+
+# See YAML format https://en.wikipedia.org/wiki/YAML
+# See Travis CI (Continuous Integration) https://docs.travis-ci.com/
+
+
+language: c
+
+os:
+  - linux
+
+compiler:
+  - clang
+  - gcc
+
+addons:
+  apt:
+    packages:
+      - clang
+      - gcc
+      - make
+      - libc6-dev
+      - libc6-dev-i386
+      - libgmp3-dev
+      - libgmp3-dev:i386
+
+script:
+  - make clean
+  - make linux
+  - make clean
