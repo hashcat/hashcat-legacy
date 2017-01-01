@@ -33,18 +33,18 @@ fi
 ## install osx cross stuff
 mkdir -p apple-pkgs
 cd apple-pkgs
-
+# Fixed missed link package from debian repository
 dpkg -l | grep libssl0.9.8 | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  if [ ! -f "libssl0.9.8_0.9.8o-4squeeze14_amd64.deb" ]; then
-    wget -c http://http.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+  if [ ! -f "libssl0.9.8_0.9.8o-7_amd64.deb" ]; then
+    wget -c http://snapshot.debian.org/archive/debian/20110406T213352Z/pool/main/o/openssl098/libssl0.9.8_0.9.8o-7_amd64.deb
     if [ $? -ne 0 ]; then
       echo "! failed to download libssl0.9.8 debian package"
       exit 1
     fi
   fi
 
-  dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+  dpkg -i libssl0.9.8_0.9.8o-7_amd64.deb
   if [ $? -ne 0 ]; then
     echo "! failed to install libssl0.9.8"
     exit 1
