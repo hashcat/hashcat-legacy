@@ -25,8 +25,7 @@ $ sudo ./tools/deps_amd64.sh
 Install the dependencies for Arch: i386
    sh
 $`cd hashcat-legacy
-$ sudo ./tools/deps_i386.sh``
-
+$ sudo ./tools/deps_i386.sh
 Run make depending on your os
 
 ```bash
