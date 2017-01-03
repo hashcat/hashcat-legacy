@@ -7,21 +7,25 @@
 * Gabriele Gristina <<matrix@hashcat.net>>
 
 ### Dependencies
-To compile **Hashcat** you need to cross compile the **gmp** library for Linux (32/64 bit), Windows (32/64 bit) and OSX (64 bit). (see below)
+To compile **Hashcat-Legacy** you need to cross compile the **gmp** library for Linux (32/64 bit), Windows (32/64 bit) and OSX (64 bit). (see below)
 
-### Building Hashcat
-First get a copy of **Hashcat** repository
-
-```sh
-$ git clone https://github.com/hashcat/hashcat.git
-```
-
-Install the dependencies
+### Building Hashcat-Legacy
+First get a copy of **Hashcat-Legacy** repository
 
 ```sh
-$ cd hashcat
-$ sudo ./tools/deps.sh
+$ git clone https://github.com/hashcat/hashcat-legacy.git
 ```
+
+Install the dependencies for Arch: amd64
+
+```sh
+$ cd hashcat-legacy
+$ sudo ./tools/deps_amd64.sh
+
+Install the dependencies for Arch: i386
+   sh
+$`cd hashcat-legacy
+$ sudo ./tools/deps_i386.sh``
 
 Run make depending on your os
 
