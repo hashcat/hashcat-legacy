@@ -33,18 +33,17 @@ fi
 ## install osx cross stuff
 mkdir -p apple-pkgs
 cd apple-pkgs
-
 dpkg -l | grep libssl0.9.8 | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  if [ ! -f "libssl0.9.8_0.9.8o-4squeeze14_amd64.deb" ]; then
-    wget -c http://http.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+  if [ ! -f "libssl0.9.8_0.9.8o-7_i386.deb" ]; then
+    wget -c http://snapshot.debian.org/archive/debian/20110406T213352Z/pool/main/o/openssl098/libssl0.9.8_0.9.8o-7_i386.deb
     if [ $? -ne 0 ]; then
       echo "! failed to download libssl0.9.8 debian package"
       exit 1
     fi
   fi
 
-  dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+  dpkg -i libssl0.9.8_0.9.8o-7_i386.deb
   if [ $? -ne 0 ]; then
     echo "! failed to install libssl0.9.8"
     exit 1
@@ -54,15 +53,15 @@ fi
 
 dpkg -l | grep apple-uni-sdk-10.5 | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  if [ ! -f "apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb" ]; then
-    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb
+  if [ ! -f "apple-uni-sdk-10.5_20110407-0.flosoft1_i386.deb" ]; then
+    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-uni-sdk-10.5_20110407-0.flosoft1_i386.deb
     if [ $? -ne 0 ]; then
       echo "! failed to download apple-uni-sdk-10.5 debian package"
       exit 1
     fi
   fi
 
-  dpkg -i apple-uni-sdk-10.5_20110407-0.flosoft1_amd64.deb
+  dpkg -i apple-uni-sdk-10.5_20110407-0.flosoft1_i386.deb
   if [ $? -ne 0 ]; then
     echo "! failed to install apple-uni-sdk-10.5"
     exit 1
@@ -71,15 +70,15 @@ fi
 
 dpkg -l | grep apple-uni-sdk-10.6 | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  if [ ! -f "apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb" ]; then
-    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb
+  if [ ! -f "apple-uni-sdk-10.6_20110407-0.flosoft1_i386.deb" ]; then
+    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-uni-sdk-10.6_20110407-0.flosoft1_i386.deb
     if [ $? -ne 0 ]; then
       echo "! failed to download apple-uni-sdk-10.6 debian package"
       exit 1
     fi
   fi
 
-  dpkg -i apple-uni-sdk-10.6_20110407-0.flosoft1_amd64.deb
+  dpkg -i apple-uni-sdk-10.6_20110407-0.flosoft1_i386.deb
   if [ $? -ne 0 ]; then
     echo "! failed to install apple-uni-sdk-10.6"
     exit 1
@@ -88,15 +87,15 @@ fi
 
 dpkg -l | grep apple-x86-odcctools | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  if [ ! -f "apple-x86-odcctools_758.159-0flosoft11_amd64.deb" ]; then
-    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-x86-odcctools_758.159-0flosoft11_amd64.deb
+  if [ ! -f "apple-x86-odcctools_758.159-0flosoft11_i386.deb" ]; then
+    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-x86-odcctools_758.159-0flosoft11_i386.deb
     if [ $? -ne 0 ]; then
       echo "! failed to download apple-x86-odcctools debian package"
       exit 1
     fi
   fi
 
-  dpkg -i apple-x86-odcctools_758.159-0flosoft11_amd64.deb
+  dpkg -i apple-x86-odcctools_758.159-0flosoft11_i386.deb
   if [ $? -ne 0 ]; then
     echo "! failed to install apple-x86-odcctools"
     exit 1
@@ -105,15 +104,15 @@ fi
 
 dpkg -l | grep apple-x86-gcc | grep ^ii &>/dev/null
 if [ $? -ne 0 ]; then
-  if [ ! -f "apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb" ]; then
-    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb
+  if [ ! -f "apple-x86-gcc_4.2.1~5646.1flosoft2_i386.deb" ]; then
+    wget -c https://launchpad.net/~flosoft/+archive/ubuntu/cross-apple/+files/apple-x86-gcc_4.2.1~5646.1flosoft2_i386.deb
     if [ $? -ne 0 ]; then
       echo "! failed to download apple-x86-gcc debian package"
       exit 1
     fi
   fi
 
-  dpkg -i apple-x86-gcc_4.2.1~5646.1flosoft2_amd64.deb
+  dpkg -i apple-x86-gcc_4.2.1~5646.1flosoft2_i386.deb
   if [ $? -ne 0 ]; then
     echo "! failed to install apple-x86-gcc"
     exit 1
