@@ -1,0 +1,10 @@
+https://2-edge-chat.facebook.com/pull?channel=p_100003156240327&seq=4&partition=-2&clientid=7742fb95&cb=bujx&idle=4&qp=y&cap=8&pws=fresh&isq=173146&msgs_recv=17&uid=100003156240327&viewer_uid=100003156240327&sticky_token=245&sticky_pool=lla1c22_chat-proxy&state=active&mode=stream&format=json
+GET /pull?channel=p_100003156240327&seq=4&partition=-2&clientid=7742fb95&cb=bujx&idle=4&qp=y&cap=8&pws=fresh&isq=173146&msgs_recv=17&uid=100003156240327&viewer_uid=100003156240327&sticky_token=245&sticky_pool=lla1c22_chat-proxy&state=active&mode=stream&format=json HTTP/1.1
+Host: 2-edge-chat.facebook.com
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Accept: */*
+Referer: https://www.facebook.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: ar-AE,ar;q=0.9,en-US;q=0.8,en;q=0.7
+Cookie: oo=v1%7C1%3A1512032712; datr=lokfWkLTDmQXLwjuwPGl0848; locale=ar_AR; sb=lokfWo7rq9-i1gdc4dWwPjXz; pl=n; c_user=100003156240327; xs=34%3ARFrFbkfRxrO49Q%3A2%3A1512598057%3A7187%3A680; fr=0tYVjgt0O1Ra8pP0B.AWV-zwooOe40bLJEiRBxc6JQH-8.BaH3aO.Zi.Foj.0.0.BaKmKx.AWV0VuEI; presence=EDvF3EtimeF1512730187EuserFA21B03156240327A2EstateFDt3F_5bDiFA2user_3a1B02710414282A2ErF1EoF1EfF1C_5dG512730187579Elm3FA2user_3a1B02710414282A2Eutc3F1512730187380CEchFDp_5f1B03156240327F4CC; act=1512730189523%2F7; wd=1366x150
