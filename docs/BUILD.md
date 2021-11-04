@@ -13,7 +13,7 @@ To compile **Hashcat** you need to cross compile the **gmp** library for Linux (
 First get a copy of **Hashcat** repository
 
 ```sh
-$ git clone https://github.com/hashcat/hashcat.git
+$ git clone https://github.com/hashcat/hashcat-legacy.git
 ```
 
 Install the dependencies
